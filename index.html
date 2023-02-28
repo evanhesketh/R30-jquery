@@ -79,10 +79,27 @@
     let $newListItem = $("<li>");
     $newListItem.text("New list item!");
     $list.append($newListItem);
+    $('aside').empty().append("<p>");
+    $('aside p').text('Sorry for the list!');
+    $('.form-control').on('change', updateBackgroundColor);
+    $('img').on('click', function() {
+      $('img').remove();
+    })
 
     // Function to generate random font size between 0 and 100
     function getRandomFontSize(min, max) {
       return Math.random() * (max - min + 1) + min;
+    }
+
+    // updates background color of body depending on form input values
+    function updateBackgroundColor() {
+      const redVal = $('.form-control').get(0).value;
+      const greenVal = $('.form-control').get(1).value;
+      const blueVal = $('.form-control').get(2).value;
+
+      $('body')
+        .css("background-color", `rgb(${redVal}, ${greenVal}, ${blueVal})`);
+
     }
 
   </script>
