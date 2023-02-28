@@ -20,17 +20,30 @@
     $submitButton.text("Submit your film");
     $('body').append($submitButton);
 
+    const $movieList = $('<ul>');
+    $('body').append($movieList);
+
     $submitButton.on('click', addMovie);
+
+    $movieList.on('click', '.remove-btn', function(evt) {
+      // evt.target.parentElement.remove();
+      $(evt.target).parent().remove();
+    })
 
       //Function to add movie and rating to list
 
       function addMovie() {
 
         const movieName = $('.form.movie').val();
-        const ratingVal = $('.form.rating').val();
+        const ratingVal = $('.form.rating').val(); // convert val to number
 
-        console.log("Movie = " + movieName + " Rating = " + ratingVal);
+        const $newMovie = $('<li>').text(`${movieName}'s rating is ${ratingVal}`);
+        $newMovie.addClass('new-movie');
+        $movieList.append($newMovie);
+        const $removeBtn = $('<button class="remove-btn">Remove Me</button>');
+        $newMovie.append($removeBtn);
 
+       $movieForm.get(0).reset(); // need to get as vanilla DOM element to reset
       }
   </script>
 </body>
